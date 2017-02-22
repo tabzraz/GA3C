@@ -31,6 +31,7 @@ class Config:
 
     # Name of the game, with version (e.g. PongDeterministic-v0)
     ATARI_GAME = 'PongDeterministic-v0'
+    GAME = 'Maze-1-v1'
 
     # Enable to see the trained agent in action
     PLAY_MODE = False
@@ -48,9 +49,9 @@ class Config:
     # Number of Agents
     AGENTS = 32 
     # Number of Predictors
-    PREDICTORS = 2
+    PREDICTORS = 3
     # Number of Trainers
-    TRAINERS = 2
+    TRAINERS = 3
 
     # Device
     DEVICE = 'gpu:0'
@@ -78,21 +79,23 @@ class Config:
     PREDICTION_BATCH_SIZE = 128
 
     # Input of the DNN
-    STACKED_FRAMES = 4
-    IMAGE_WIDTH = 84
-    IMAGE_HEIGHT = 84
+    STACKED_FRAMES = 1
+    IMAGE_WIDTH = 7
+    IMAGE_HEIGHT = 7
 
     # Total number of episodes and annealing frequency
-    EPISODES = 400000
-    ANNEALING_EPISODE_COUNT = 400000
+    # EPISODES = 400000
+    EPISODES = 10000
+    # ANNEALING_EPISODE_COUNT = 400000
+    ANNEALING_EPISODE_COUNT = 5000
 
     # Entropy regualrization hyper-parameter
-    BETA_START = 0.01
-    BETA_END = 0.01
+    BETA_START = 0.000001
+    BETA_END = 0.000001
 
     # Learning rate
-    LEARNING_RATE_START = 0.0003
-    LEARNING_RATE_END = 0.0003
+    LEARNING_RATE_START = 0.01
+    LEARNING_RATE_END = 0.0001
 
     # RMSProp parameters
     RMSPROP_DECAY = 0.99
@@ -104,7 +107,7 @@ class Config:
     
     # Gradient clipping
     USE_GRAD_CLIP = False
-    GRAD_CLIP_NORM = 40.0 
+    GRAD_CLIP_NORM = 10.0 
     # Epsilon (regularize policy lag in GA3C)
     LOG_EPSILON = 1e-6
     # Training min batch size - increasing the batch size increases the stability of the algorithm, but make learning slower
@@ -114,9 +117,9 @@ class Config:
     # Log and save
 
     # Enable TensorBoard
-    TENSORBOARD = False
+    TENSORBOARD = True
     # Update TensorBoard every X training steps
-    TENSORBOARD_UPDATE_FREQUENCY = 1000
+    TENSORBOARD_UPDATE_FREQUENCY = 100
 
     # Enable to save models every SAVE_FREQUENCY episodes
     SAVE_MODELS = True

@@ -39,7 +39,7 @@ from GameManager import GameManager
 
 class Environment:
     def __init__(self):
-        self.game = GameManager(Config.ATARI_GAME, display=Config.PLAY_MODE)
+        self.game = GameManager(Config.GAME, display=Config.PLAY_MODE)
         self.nb_frames = Config.STACKED_FRAMES
         self.frame_q = Queue(maxsize=self.nb_frames)
         self.previous_state = None
@@ -62,14 +62,18 @@ class Environment:
     def _get_current_state(self):
         if not self.frame_q.full():
             return None  # frame queue is not full yet.
+        # print(self.frame_q.queue[0])
         x_ = np.array(self.frame_q.queue)
-        x_ = np.transpose(x_, [1, 2, 0])  # move channels
-        return x_
+        # print(x_.shape)
+        # x_ = np.transpose(x_, [1, 2, 0])  # move channels
+        # print(x_[0].shape)
+        return x_[0]
 
     def _update_frame_q(self, frame):
         if self.frame_q.full():
             self.frame_q.get()
-        image = Environment._preprocess(frame)
+        # image = Environment._preprocess(frame)
+        image = frame
         self.frame_q.put(image)
 
     def get_num_actions(self):

@@ -34,6 +34,8 @@ from Config import Config
 from Environment import Environment
 from Experience import Experience
 
+import gym
+
 
 class ProcessAgent(Process):
     def __init__(self, id, prediction_q, training_q, episode_log_q):
